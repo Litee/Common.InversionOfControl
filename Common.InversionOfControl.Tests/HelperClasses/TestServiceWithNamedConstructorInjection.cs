@@ -4,17 +4,25 @@ namespace Common.InversionOfControl.Tests.HelperClasses
 {
     public class TestServiceWithNamedConstructorInjection : IAnotherTestService
     {
-        private readonly ITestService _testService;
+        private readonly ITestService _testService1;
+        private readonly ITestService _testService2;
 
-        public TestServiceWithNamedConstructorInjection([NamedDependency("service1")] ITestService testService)
+        public TestServiceWithNamedConstructorInjection([NamedDependency("service1")] ITestService testServiceOne, [NamedDependency("service2")] ITestService testServiceTwo)
         {
-            if (testService == null) throw new ArgumentNullException("testService");
-            _testService = testService;
+            if (testServiceOne == null) throw new ArgumentNullException("testServiceOne");
+            if (testServiceTwo == null) throw new ArgumentNullException("testServiceTwo");
+            _testService1 = testServiceOne;
+            _testService2 = testServiceTwo;
         }
 
-        public string Call()
+        public string CallChildService1()
         {
-            return _testService.Call();
+            return _testService1.Call();
+        }
+
+        public string CallChildService2()
+        {
+            return _testService2.Call();
         }
     }
 }

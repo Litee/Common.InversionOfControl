@@ -12,9 +12,14 @@ namespace Common.InversionOfControl.Tests.HelperClasses
             _testService = testService;
         }
 
-        public string Call()
+        public string CallChildService1()
         {
             return _testService.Call();
+        }
+
+        public string CallChildService2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

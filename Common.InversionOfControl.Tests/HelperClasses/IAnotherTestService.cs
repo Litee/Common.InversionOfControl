@@ -2,6 +2,7 @@
 {
     public interface IAnotherTestService
     {
-        string Call();
+        string CallChildService1();
+        string CallChildService2();
     }
 }

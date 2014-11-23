@@ -3,7 +3,11 @@
 
 Simple generic wrapper around several IoC containers. 
 
-Supported containers: Unity, Autofac, Ninject
+Supported containers:
+- Unity 3
+- Autofac
+- Ninject
+- Castle Windsor
 
 Existing features:
 * Instance/Implementation/Lambda registration (generics-only)
