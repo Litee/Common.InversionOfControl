@@ -1,7 +1,5 @@
-Common.InversionOfControl
+# Common.InversionOfControl
 =========================
-
-## Overview:
 
 Simple generic wrapper around several IoC containers. 
 
@@ -16,4 +14,5 @@ Existing features:
 - Dependency injection
 - Optional dependencies support
 - Mark one of multiple constructors for injection
+- Resolve multiple instances
 - etc
