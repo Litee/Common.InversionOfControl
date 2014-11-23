@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7A8FAA0-4D64-429F-9180-3D84691A8238}</ProjectGuid>
+    <ProjectGuid>{09FDEDDF-82D2-4DDA-9462-345E8785243B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common.InversionOfControl.Autofac.Tests</RootNamespace>
@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutofacContainerBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -47,9 +48,9 @@
       <Project>{82F04ACD-16EE-4576-9B62-89D99CB214C7}</Project>
       <Name>Common.InversionOfControl.Autofac</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.InversionOfControl.Tests.Shared\Common.InversionOfControl.Tests.Shared.csproj">
-      <Project>{AAF5C978-7BE1-4011-BED2-437F05E24CE7}</Project>
-      <Name>Common.InversionOfControl.Tests.Shared</Name>
+    <ProjectReference Include="..\Common.InversionOfControl.Tests\Common.InversionOfControl.Tests.csproj">
+      <Project>{B266A0B3-C713-49D5-896E-D3695CF55AF5}</Project>
+      <Name>Common.InversionOfControl.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.InversionOfControl\Common.InversionOfControl.csproj">
       <Project>{CDB5C84E-ECAE-4FB1-BE53-0DEE6A992B8F}</Project>

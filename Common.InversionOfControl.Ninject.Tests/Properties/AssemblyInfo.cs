@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Common.InversionOfControl.Autofac.Tests")]
+[assembly: AssemblyTitle("Common.InversionOfControl.Ninject.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Common.InversionOfControl.Autofac.Tests")]
+[assembly: AssemblyProduct("Common.InversionOfControl.Ninject.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b405b58f-28ba-4a3c-9f03-d050b462ecd2")]
+[assembly: Guid("ae634f5a-bba4-4406-a8a0-858086523c5e")]
 
 // Version information for an assembly consists of the following four values:
 //

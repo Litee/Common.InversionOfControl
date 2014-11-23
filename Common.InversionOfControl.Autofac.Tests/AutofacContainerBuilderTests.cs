@@ -1,7 +1,7 @@
-﻿using Common.InversionOfControl.Autofac;
+﻿using Common.InversionOfControl.Tests;
 using NUnit.Framework;
 
-namespace Common.InversionOfControl.Tests
+namespace Common.InversionOfControl.Autofac.Tests
 {
     [TestFixture]
     public class AutofacContainerBuilderTests : ContainerBuilderTests

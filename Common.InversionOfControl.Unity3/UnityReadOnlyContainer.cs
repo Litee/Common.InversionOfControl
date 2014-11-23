@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 
-namespace Common.InversionOfControl.Unity
+namespace Common.InversionOfControl.Unity3
 {
     internal class UnityReadOnlyContainer : IDisposableContainer
     {

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B266A0B3-C713-49D5-896E-D3695CF55AF5}</ProjectGuid>
+    <ProjectGuid>{2015EE39-59A9-4A0B-83B1-DBF9FBC4B1F4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.InversionOfControl.Tests</RootNamespace>
-    <AssemblyName>Common.InversionOfControl.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>Common.InversionOfControl.Unity3</RootNamespace>
+    <AssemblyName>Common.InversionOfControl.Unity3</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,30 +28,20 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContainerBuilderTests.cs" />
-    <Compile Include="ContainerBuilderTests.RegisterImplementationWithoutContract.cs" />
-    <Compile Include="ContainerBuilderTests.RegisterContractAndImplementation.cs" />
-    <Compile Include="ContainerBuilderTests.RegisterLambda.cs" />
-    <Compile Include="ContainerBuilderTests.ResolveDependencyInjection.cs" />
-    <Compile Include="ContainerBuilderTests.ResolveConstructorInjection.cs" />
-    <Compile Include="HelperClasses\TestServiceWithConstructorInjection.cs" />
-    <Compile Include="HelperClasses\TestServiceWithNamedConstructorInjection.cs" />
-    <Compile Include="HelperClasses\IAnotherTestService.cs" />
-    <Compile Include="HelperClasses\ITestService.cs" />
-    <Compile Include="HelperClasses\TestServiceOne.cs" />
-    <Compile Include="HelperClasses\TestServiceTwo.cs" />
+    <Compile Include="MyDefaultConstructorSelectorPolicy.cs" />
+    <Compile Include="MyStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ContainerBuilderTests.RegisterSingletonTests.cs" />
+    <Compile Include="UnityContainerBuilder.cs" />
+    <Compile Include="UnityReadOnlyContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

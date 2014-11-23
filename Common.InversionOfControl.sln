@@ -5,13 +5,19 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl", "Common.InversionOfControl\Common.InversionOfControl.csproj", "{CDB5C84E-ECAE-4FB1-BE53-0DEE6A992B8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Unity", "Common.InversionOfControl.Unity\Common.InversionOfControl.Unity.csproj", "{EF011A48-5B20-42C7-97B5-630E4A25C199}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Autofac", "Common.InversionOfControl.Autofac\Common.InversionOfControl.Autofac.csproj", "{82F04ACD-16EE-4576-9B62-89D99CB214C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Tests", "Common.InversionOfControl.Tests\Common.InversionOfControl.Tests.csproj", "{B266A0B3-C713-49D5-896E-D3695CF55AF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Ninject", "Common.InversionOfControl.Ninject\Common.InversionOfControl.Ninject.csproj", "{679E3926-E033-43A8-9F91-F1C84CE934C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Unity3", "Common.InversionOfControl.Unity3\Common.InversionOfControl.Unity3.csproj", "{2015EE39-59A9-4A0B-83B1-DBF9FBC4B1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Unity3.Tests", "Common.InversionOfControl.Unity3.Tests\Common.InversionOfControl.Unity3.Tests.csproj", "{89F1B10E-4F30-4298-AAD7-28066D2F3F2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Autofac.Tests", "Common.InversionOfControl.Autofac.Tests\Common.InversionOfControl.Autofac.Tests.csproj", "{09FDEDDF-82D2-4DDA-9462-345E8785243B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.InversionOfControl.Ninject.Tests", "Common.InversionOfControl.Ninject.Tests\Common.InversionOfControl.Ninject.Tests.csproj", "{2CF4D070-6F5D-4D80-8F4B-248D22CD6A92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +29,6 @@ Global
 		{CDB5C84E-ECAE-4FB1-BE53-0DEE6A992B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDB5C84E-ECAE-4FB1-BE53-0DEE6A992B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDB5C84E-ECAE-4FB1-BE53-0DEE6A992B8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF011A48-5B20-42C7-97B5-630E4A25C199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF011A48-5B20-42C7-97B5-630E4A25C199}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF011A48-5B20-42C7-97B5-630E4A25C199}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF011A48-5B20-42C7-97B5-630E4A25C199}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82F04ACD-16EE-4576-9B62-89D99CB214C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82F04ACD-16EE-4576-9B62-89D99CB214C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82F04ACD-16EE-4576-9B62-89D99CB214C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,8 +41,27 @@ Global
 		{679E3926-E033-43A8-9F91-F1C84CE934C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{679E3926-E033-43A8-9F91-F1C84CE934C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{679E3926-E033-43A8-9F91-F1C84CE934C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2015EE39-59A9-4A0B-83B1-DBF9FBC4B1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2015EE39-59A9-4A0B-83B1-DBF9FBC4B1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2015EE39-59A9-4A0B-83B1-DBF9FBC4B1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2015EE39-59A9-4A0B-83B1-DBF9FBC4B1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89F1B10E-4F30-4298-AAD7-28066D2F3F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F1B10E-4F30-4298-AAD7-28066D2F3F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F1B10E-4F30-4298-AAD7-28066D2F3F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F1B10E-4F30-4298-AAD7-28066D2F3F2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09FDEDDF-82D2-4DDA-9462-345E8785243B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09FDEDDF-82D2-4DDA-9462-345E8785243B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09FDEDDF-82D2-4DDA-9462-345E8785243B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09FDEDDF-82D2-4DDA-9462-345E8785243B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF4D070-6F5D-4D80-8F4B-248D22CD6A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF4D070-6F5D-4D80-8F4B-248D22CD6A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF4D070-6F5D-4D80-8F4B-248D22CD6A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF4D070-6F5D-4D80-8F4B-248D22CD6A92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal

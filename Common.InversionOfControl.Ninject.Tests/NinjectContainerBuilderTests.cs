@@ -1,7 +1,7 @@
-using Common.InversionOfControl.Ninject;
+using Common.InversionOfControl.Tests;
 using NUnit.Framework;
 
-namespace Common.InversionOfControl.Tests
+namespace Common.InversionOfControl.Ninject.Tests
 {
     [TestFixture]
     public class NinjectContainerBuilderTests : ContainerBuilderTests

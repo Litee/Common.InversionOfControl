@@ -2,5 +2,6 @@
 {
     public interface IAnotherTestService
     {
+        string Call();
     }
 }

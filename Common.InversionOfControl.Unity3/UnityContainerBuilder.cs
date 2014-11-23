@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.ObjectBuilder;
-using Microsoft.Practices.Unity.Utility;
 
-namespace Common.InversionOfControl.Unity
+namespace Common.InversionOfControl.Unity3
 {
     public class UnityContainerBuilder : IContainerBuilder
     {
@@ -174,51 +169,6 @@ namespace Common.InversionOfControl.Unity
         protected override void Initialize()
         {
             Context.Strategies.Add(new MyStrategy(), UnityBuildStage.TypeMapping);
-        }
-    }
-
-    public class MyStrategy : IBuilderStrategy
-    {
-        public void PreBuildUp(IBuilderContext context)
-        {
-            context.Policies.ClearDefault(typeof (IConstructorSelectorPolicy));
-            context.Policies.SetDefault<IConstructorSelectorPolicy>(new MyDefaultUnityConstructorSelectorPolicy());
-        }
-
-        public void PostBuildUp(IBuilderContext context)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public void PreTearDown(IBuilderContext context)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public void PostTearDown(IBuilderContext context)
-        {
-            //throw new NotImplementedException();
-        }
-    }
-
-    public class MyDefaultUnityConstructorSelectorPolicy : ConstructorSelectorPolicyBase<InjectionConstructorAttribute>
-    {
-        protected override IDependencyResolverPolicy CreateResolver(ParameterInfo parameter)
-        {
-            Guard.ArgumentNotNull(parameter, "parameter");
-
-            // Resolve all DependencyAttributes on this parameter, if any
-            List<NamedDependencyAttribute> attributes = parameter.GetCustomAttributes(false).OfType<NamedDependencyAttribute>().ToList();
-
-            if (attributes.Count > 0)
-            {
-                // Since this attribute is defined with MultipleUse = false, the compiler will
-                // enforce at most one. So we don't need to check for more.
-                return new NamedTypeDependencyResolverPolicy(parameter.ParameterType, attributes[0].Name);
-            }
-
-            // No attribute, just go back to the container for the default for that type.
-            return new NamedTypeDependencyResolverPolicy(parameter.ParameterType, null);
         }
     }
 }

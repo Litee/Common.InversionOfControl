@@ -8,12 +8,12 @@ namespace Common.InversionOfControl.Tests
         [Test]
         public void ShouldResolveConstructorInjection()
         {
-            Target.Register<TestServiceWithConstructorInjection>();
-            Target.Register<ITestService>(c => new TestServiceOne());
+            Target.Register<IAnotherTestService, TestServiceWithConstructorInjection>();
+            Target.Register<ITestService, TestServiceOne>();
             IDisposableContainer container = Target.Build();
             //
-            var firstInstance = container.GetInstance<TestServiceWithConstructorInjection>();
-            var secondInstance = container.GetInstance<TestServiceWithConstructorInjection>();
+            var firstInstance = container.GetInstance<IAnotherTestService>();
+            var secondInstance = container.GetInstance<IAnotherTestService>();
             Assert.AreNotSame(firstInstance, secondInstance);
             Assert.AreEqual("I am TestServiceOne", firstInstance.Call());
             Assert.AreEqual("I am TestServiceOne", secondInstance.Call());
@@ -23,8 +23,8 @@ namespace Common.InversionOfControl.Tests
         public void ShouldResolveNamedConstructorInjection()
         {
             Target.Register<IAnotherTestService, TestServiceWithNamedConstructorInjection>();
-            Target.RegisterSingleton<ITestService>(new TestServiceOne(), "service1");
-            Target.RegisterSingleton<ITestService>(new TestServiceTwo(), "service2");
+            Target.Register<ITestService, TestServiceOne>("service1");
+            Target.Register<ITestService, TestServiceTwo>("service2");
             IDisposableContainer container = Target.Build();
             //
             var firstInstance = container.GetInstance<IAnotherTestService>();
