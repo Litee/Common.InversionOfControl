@@ -1,4 +1,6 @@
-﻿namespace Common.InversionOfControl
+﻿using System.Collections.Generic;
+
+namespace Common.InversionOfControl
 {
     public interface IContainer
     {
@@ -7,5 +9,7 @@
 
         T GetInstance<T>();
         T GetInstance<T>(string name);
+
+        IEnumerable<T> GetAllInstances<T>();
     }
 }

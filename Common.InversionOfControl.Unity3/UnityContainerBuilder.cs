@@ -1,22 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.ObjectBuilder;
 
 namespace Common.InversionOfControl.Unity3
 {
     public class UnityContainerBuilder : IContainerBuilder
     {
         private readonly UnityContainer _container;
+        private readonly Dictionary<Type, List<Type>> _contractToImplementationMapping = new Dictionary<Type, List<Type>>();
 
         public UnityContainerBuilder()
         {
             _container = new UnityContainer();
-            _container.AddExtension(new MyExtension());
+            _container.AddExtension(new UnityContainerBuilderExtension());
+//            _container.AddNewExtension<CompositionIntegration>();
         }
 
         public IDisposableContainer Build()
         {
-            return new UnityReadOnlyContainer(_container);
+            return new UnityReadOnlyContainer(_container, _contractToImplementationMapping);
         }
 
         public IContainerBuilder RegisterSingleton<T>(T instance) where T : class
@@ -27,6 +29,7 @@ namespace Common.InversionOfControl.Unity3
 
         public IContainerBuilder RegisterSingleton<T>(T instance, string name) where T : class
         {
+            if (name == null) throw new ArgumentNullException("name");
             _container.RegisterInstance(name, instance);
             return this;
         }
@@ -39,6 +42,7 @@ namespace Common.InversionOfControl.Unity3
 
         public IContainerBuilder Register<T>(string name) where T : class
         {
+            if (name == null) throw new ArgumentNullException("name");
             _container.RegisterType<T>(name, new TransientLifetimeManager());
             return this;
         }
@@ -61,6 +65,7 @@ namespace Common.InversionOfControl.Unity3
 
         public IContainerBuilder Register<T>(string name, Scope scope) where T : class
         {
+            if (name == null) throw new ArgumentNullException("name");
             switch (scope)
             {
                 case Scope.Singleton:
@@ -78,12 +83,15 @@ namespace Common.InversionOfControl.Unity3
         public IContainerBuilder Register<TInterface, TImplementation>() where TInterface : class where TImplementation : class, TInterface
         {
             _container.RegisterType<TInterface, TImplementation>(new TransientLifetimeManager());
+            RegisterContractAndImplementation(typeof (TInterface), typeof (TImplementation));
             return this;
         }
 
         public IContainerBuilder Register<TInterface, TImplementation>(string name) where TInterface : class where TImplementation : class, TInterface
         {
+            if (name == null) throw new ArgumentNullException("name");
             _container.RegisterType<TInterface, TImplementation>(name, new TransientLifetimeManager());
+            RegisterContractAndImplementation(typeof(TInterface), typeof(TImplementation));
             return this;
         }
 
@@ -100,11 +108,13 @@ namespace Common.InversionOfControl.Unity3
                 default:
                     throw new ArgumentOutOfRangeException("scope");
             }
+            RegisterContractAndImplementation(typeof(TInterface), typeof(TImplementation));
             return this;
         }
 
         public IContainerBuilder Register<TInterface, TImplementation>(string name, Scope scope) where TInterface : class where TImplementation : class, TInterface
         {
+            if (name == null) throw new ArgumentNullException("name");
             switch (scope)
             {
                 case Scope.Singleton:
@@ -116,18 +126,20 @@ namespace Common.InversionOfControl.Unity3
                 default:
                     throw new ArgumentOutOfRangeException("scope");
             }
+            RegisterContractAndImplementation(typeof(TInterface), typeof(TImplementation));
             return this;
         }
 
         public IContainerBuilder Register<T>(Func<IContainer, T> factory) where T : class
         {
-            _container.RegisterType<T>(new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container))));
+            _container.RegisterType<T>(new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container, _contractToImplementationMapping))));
             return this;
         }
 
         public IContainerBuilder Register<T>(Func<IContainer, T> factory, string name) where T : class
         {
-            _container.RegisterType<T>(name, new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container))));
+            if (name == null) throw new ArgumentNullException("name");
+            _container.RegisterType<T>(name, new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container, _contractToImplementationMapping))));
             return this;
         }
 
@@ -136,10 +148,10 @@ namespace Common.InversionOfControl.Unity3
             switch (scope)
             {
                 case Scope.Singleton:
-                    _container.RegisterType<T>(new ContainerControlledLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container))));
+                    _container.RegisterType<T>(new ContainerControlledLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container, _contractToImplementationMapping))));
                     break;
                 case Scope.Transient:
-                    _container.RegisterType<T>(new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container))));
+                    _container.RegisterType<T>(new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container, _contractToImplementationMapping))));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("scope");
@@ -149,26 +161,30 @@ namespace Common.InversionOfControl.Unity3
 
         public IContainerBuilder Register<T>(Func<IContainer, T> factory, string name, Scope scope) where T : class
         {
+            if (name == null) throw new ArgumentNullException("name");
             switch (scope)
             {
                 case Scope.Singleton:
-                    _container.RegisterType<T>(name, new ContainerControlledLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container))));
+                    _container.RegisterType<T>(name, new ContainerControlledLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container, _contractToImplementationMapping))));
                     break;
                 case Scope.Transient:
-                    _container.RegisterType<T>(name, new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container))));
+                    _container.RegisterType<T>(name, new TransientLifetimeManager(), new InjectionFactory(container => factory(new UnityReadOnlyContainer(container, _contractToImplementationMapping))));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("scope");
             }
             return this;
         }
-    }
 
-    public class MyExtension : UnityContainerExtension
-    {
-        protected override void Initialize()
+        private void RegisterContractAndImplementation(Type contractType, Type implementationType)
         {
-            Context.Strategies.Add(new MyStrategy(), UnityBuildStage.TypeMapping);
+            List<Type> list;
+            if (!_contractToImplementationMapping.TryGetValue(contractType, out list))
+            {
+                list = new List<Type>();
+                _contractToImplementationMapping.Add(contractType, list);
+            }
+            list.Add(implementationType);
         }
     }
 }

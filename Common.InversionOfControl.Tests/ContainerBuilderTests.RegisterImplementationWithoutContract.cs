@@ -1,3 +1,4 @@
+using System;
 using Common.InversionOfControl.Tests.HelperClasses;
 using NUnit.Framework;
 
@@ -122,6 +123,18 @@ namespace Common.InversionOfControl.Tests
             Assert.AreEqual("I am TestServiceOne", secondInstance.Call());
             Assert.AreEqual("I am TestServiceOne", thirdInstance.Call());
             Assert.AreEqual("I am TestServiceOne", fourthInstance.Call());
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void ShouldFailWhenNameIsNull()
+        {
+            Target.Register<TestServiceOne>((string) null);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void ShouldFailWhenNameIsNullWithScope()
+        {
+            Target.Register<TestServiceOne>((string) null, Scope.Singleton);
         }
     }
 }

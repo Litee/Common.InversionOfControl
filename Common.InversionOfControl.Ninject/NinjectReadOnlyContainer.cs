@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using System.Collections.Generic;
+using Ninject;
 
 namespace Common.InversionOfControl.Ninject
 {
@@ -29,6 +30,11 @@ namespace Common.InversionOfControl.Ninject
         public T GetInstance<T>(string name)
         {
             return _kernel.Get<T>(name);
+        }
+
+        public IEnumerable<T> GetAllInstances<T>()
+        {
+            return _kernel.GetAll<T>();
         }
 
         public void Dispose()

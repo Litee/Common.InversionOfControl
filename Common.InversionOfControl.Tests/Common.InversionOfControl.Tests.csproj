@@ -44,6 +44,7 @@
     <Compile Include="ContainerBuilderTests.RegisterImplementationWithoutContract.cs" />
     <Compile Include="ContainerBuilderTests.RegisterContractAndImplementation.cs" />
     <Compile Include="ContainerBuilderTests.RegisterLambda.cs" />
+    <Compile Include="ContainerBuilderTests.ResolveMultipleInstances.cs" />
     <Compile Include="ContainerBuilderTests.ResolveDependencyInjection.cs" />
     <Compile Include="ContainerBuilderTests.ResolveConstructorInjection.cs" />
     <Compile Include="HelperClasses\TestServiceWithConstructorInjection.cs" />

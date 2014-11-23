@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Autofac;
 
 namespace Common.InversionOfControl.Autofac
@@ -31,6 +33,11 @@ namespace Common.InversionOfControl.Autofac
         public T GetInstance<T>(string name)
         {
             return _container.ResolveNamed<T>(name);
+        }
+
+        public IEnumerable<T> GetAllInstances<T>()
+        {
+            return _container.Resolve<IEnumerable<T>>();
         }
 
         public void Dispose()
